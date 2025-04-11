@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://belladolceny.com/$1",
+      "has": [
+        {
+          "type": "host",
+          "value": "belladolceny.com"
+        }
+      ],
+      "permanent": true
+    }
+  ]
+}

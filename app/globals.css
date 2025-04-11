@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #006F52;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #006F52;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  /* font-family: "Akaya Telivigala", system-ui; */
+}

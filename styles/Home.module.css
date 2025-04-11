@@ -1,0 +1,82 @@
+/* styles/Home.module.css */
+.page-blurred {
+  filter: blur(6px);
+  background-color: #02684db9; /* мокрый асфальт */
+  pointer-events: none;
+  /* user-select: none; */
+  transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.popup-open {
+  overflow: hidden;
+}
+
+.popup-container {
+  pointer-events: auto;
+}
+
+
+.container {
+  background-color: #006F52;
+  color: #f2f2f2;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  /* font-family: 'Playfair Display', serif; */
+  color: #d6ac66;
+  font-size: 3rem;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: #cccccc;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.imageContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+.image {
+  width: 100%;
+  height: auto;
+  transition: transform 1s ease;
+}
+
+.contentSection div {
+  margin-bottom: 30px;
+}
+
+.contentSection h2 {
+  color: #d6ac66;
+}
+
+.contentSection p {
+  font-size: 1rem;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.8rem;
+  color: #666666;
+}
