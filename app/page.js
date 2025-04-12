@@ -13,18 +13,17 @@ import { Sacramento } from 'next/font/google';
 import Logo from './components/Logo';
 import { contactInfo } from './components/info';
 import Popup from './components/pop';
-import { Dancing_Script } from 'next/font/google'; // Добавим новый шрифт для заголовков
+import { Dancing_Script } from 'next/font/google';
 import { Poppins } from 'next/font/google';
-import { Nunito } from 'next/font/google';  // Импорт шрифта Nunito
+import { Nunito } from 'next/font/google';
 
-const nunito = Nunito({ subsets: ['latin'], weight: ['300', '400', '700'] }); 
+const nunito = Nunito({ subsets: ['latin'], weight: ['300', '400', '700'] });
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '600'] });
-
 const mali = Mali({ subsets: ['latin'], weight: ['200', '300', '400', '700'] });
 const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '700'] });
 const lora = Lora({ subsets: ['latin'], weight: ['400', '700'] });
 const sacramento = Sacramento({ subsets: ['latin'], weight: '400' });
-const dancingScript = Dancing_Script({ subsets: ['latin'], weight: ['400', '700'] }); // Заголовки
+const dancingScript = Dancing_Script({ subsets: ['latin'], weight: ['400', '700'] });
 
 const images = [
   '/images/photo1.jpg',
@@ -50,15 +49,15 @@ export default function Home() {
   useEffect(() => {
     document.body.classList.toggle('popup-open', popupEnabled === 1 && !popupClosed);
   }, [popupClosed, popupEnabled]);
-  
+
   useEffect(() => {
     if (popupEnabled === 0 || popupClosed) {
       AOS.init();
-  
+
       const interval = setInterval(() => {
         setCurrentImage((prev) => (prev + 1) % images.length);
       }, 3000);
-  
+
       const heartInterval = setInterval(() => {
         setHearts((prev) => {
           if (prev.length >= 10) return prev.slice(1);
@@ -74,15 +73,15 @@ export default function Home() {
           ];
         });
       }, 500);
-  
+
       const observer = new IntersectionObserver(
         ([entry]) => setIsFooterVisible(entry.isIntersecting),
         { threshold: 0.1 }
       );
-  
+
       const footer = document.querySelector('footer');
       if (footer) observer.observe(footer);
-  
+
       return () => {
         clearInterval(interval);
         clearInterval(heartInterval);
@@ -93,10 +92,10 @@ export default function Home() {
 
   return (
     <>
-{popupEnabled === 1 && !popupClosed && <Popup onClose={() => setPopupClosed(true)} />}
+      {popupEnabled === 1 && !popupClosed && <Popup onClose={() => setPopupClosed(true)} />}
       <Head>
         <title>Karina Sparkle</title>
-        <meta name="description" content="Karina Sparkle | Girl nex door" />
+        <meta name="description" content="Karina Sparkle | Girl next door" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content="Karina Sparkle escort services, luxury, companionship, exclusive connections" />
         <meta name="author" content="Karina Sparkle" />
@@ -110,17 +109,17 @@ export default function Home() {
           backgroundColor: '#2F4037',
           color: '#f0f0f0',
           overflowX: 'hidden',
-          padding: '0 20px',
+          padding: '0 2vw',
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
         }}
       >
         <header className={styles.header} style={{ textAlign: 'center' }}>
-          <h1 className={dancingScript.className} style={{ color: '#d6ac66' }}>
-          Karina Sparkle
+          <h1 className={dancingScript.className} style={{ color: '#d6ac66', fontSize: 'clamp(2rem, 5vw, 4rem)' }}>
+            Karina Sparkle
           </h1>
-          <p className={lora.className}>
+          <p className={lora.className} style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}>
             Your girl next door
           </p>
         </header>
@@ -142,13 +141,11 @@ export default function Home() {
             data-aos="fade-up"
             style={{
               width: '100%',
-              maxWidth: '100%',
-              height: '850px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              maxWidth: '1200px',
+              margin: '0 auto',
               position: 'relative',
               overflow: 'hidden',
+              aspectRatio: '3/4', // Соотношение сторон для книжного формата
             }}
           >
             {images.map((src, index) => (
@@ -159,22 +156,21 @@ export default function Home() {
                 className={styles.image}
                 style={{
                   width: '100%',
-                  height: 'auto',
-                  maxHeight: '100%',
-                  objectFit: 'contain',
+                  height: 'auto', // Высота подстраивается под ширину
+                  objectFit: 'contain', // Сохраняем пропорции для книжного формата
                   opacity: currentImage === index ? 1 : 0,
                   position: 'absolute',
                   transition: 'opacity 1s ease-in-out',
                 }}
               />
             ))}
-        
+
             <Logo
               style={{
                 position: 'absolute',
-                bottom: '10px',
-                right: '40px',
-                zIndex: 10, // убедимся, что логотип поверх картинок
+                bottom: '1vw',
+                right: '1vw',
+                zIndex: 10,
               }}
             />
           </div>
@@ -182,11 +178,13 @@ export default function Home() {
           <div
             className={styles.thumbnailContainer}
             style={{
-              marginTop: '10px',
+              marginTop: '1vw',
               display: 'flex',
               justifyContent: 'center',
-              gap: '5px',
+              gap: '0.5vw',
               overflowX: 'auto',
+              width: '100%',
+              maxWidth: '1200px',
             }}
           >
             {images.map((src, index) => (
@@ -197,8 +195,8 @@ export default function Home() {
                 className={styles.thumbnail}
                 onClick={() => setCurrentImage(index)}
                 style={{
-                  width: '50px',
-                  height: '50px',
+                  width: 'clamp(35px, 5vw, 50px)',
+                  height: 'clamp(35px, 5vw, 50px)',
                   objectFit: 'cover',
                   cursor: 'pointer',
                   border: currentImage === index ? '2px solid #d6ac66' : '2px solid transparent',
@@ -211,124 +209,73 @@ export default function Home() {
 
         <section
           className={styles.contentSection}
-          style={{ maxWidth: '800px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: 'auto auto', gap: '20px' }}
+          style={{
+            width: '100%', // Адаптируем под ширину экрана
+            maxWidth: '1200px',
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', // Уменьшаем минимальную ширину для маленьких экранов
+            gridTemplateRows: 'auto auto',
+            gap: 'clamp(10px, 2vw, 20px)',
+            padding: 'clamp(20px, 3vw, 40px) clamp(10px, 2vw, 20px)', // Добавляем горизонтальные отступы
+            boxSizing: 'border-box', // Учитываем padding в ширине
+          }}
         >
           <div data-aos="fade-right" style={{ gridColumn: '1 / -1', textAlign: 'left' }}>
-          <h2
-  className={playfair.className}
-  style={{
-    color: '#d6ac66',
-    fontWeight: 300,
-  }}
->
+            <h2 className={playfair.className} style={{ color: '#d6ac66', fontWeight: 300, fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
               Hi gentlemen
             </h2>
-            <p>
-            
-            If you are looking to have a wonderful time with a Beautiful and experienced woman then you have found it with me!
-            ! am very discreet and open minded to any GENTELMEN who l encounter and I will make sure you enjoy every min with me.... 
-            Whether you're on vacation, business or a getaway from life back at home give me a call...... 
-            My personality, not to mention looks will bring your stress to an ease.....
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>
+              If you are looking to have a wonderful time with a Beautiful and experienced woman then you have found it with me! I am very discreet and open minded to any GENTELMEN who I encounter and I will make sure you enjoy every min with me.... Whether you're on vacation, business or a getaway from life back at home give me a call...... My personality, not to mention looks will bring your stress to an ease.....
             </p>
-            <h3
-                className={playfair.className}
-                style={{ fontWeight: 300, color: '#d6ac66', textAlign: 'right' }}>
-                   Your Karina
-              </h3>
+            <h3 className={playfair.className} style={{ fontWeight: 300, color: '#d6ac66', textAlign: 'right', fontSize: 'clamp(1.2rem, 2.5vw, 2rem)' }}>
+              Your Karina
+            </h3>
           </div>
 
           <div data-aos="fade-left" style={{ textAlign: 'left' }}>
-            <h2
-              className={playfair.className}
-              style={{fontWeight: 300, color: '#d6ac66' }}
-            >
-             Donation
+            <h2 className={playfair.className} style={{ fontWeight: 300, color: '#d6ac66', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
+              Donation
             </h2>
-            
-            <p>Inacll  $700</p> 
-            <p>Outcall $800 + Taxi</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Incall $700</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Outcall $800 + Taxi</p>
           </div>
 
           <div data-aos="fade-up" style={{ textAlign: 'left' }}>
-            <h2
-              className={playfair.className}
-              style={{ fontWeight: 300, color: '#d6ac66' }}
-            >
+            <h2 className={playfair.className} style={{ fontWeight: 300, color: '#d6ac66', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
               Details about me
             </h2>
-            
-            <p>Location - Manhattan  </p>
-            <p>Age - 26</p>
-            <p>Height - 5ft 6in</p>
-            <p>Weight - 120ibs</p>
-            <p>Measurements - 32 B</p>
-            <p>Body type - Athletic</p>
-            <p>Ethnicity - White</p>
-            <p>Hair - Blond</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Location - Manhattan</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Age - 26</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Height - 5ft 6in</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Weight - 120ibs</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Measurements - 32 B</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Body type - Athletic</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Ethnicity - White</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Hair - Blond</p>
           </div>
 
           <div data-aos="fade-up" style={{ gridColumn: '1 / -1', textAlign: 'left' }}>
-            <h2
-              className={playfair.className}
-              style={{ fontWeight: 300, color: '#d6ac66' }}
-            >
+            <h2 className={playfair.className} style={{ fontWeight: 300, color: '#d6ac66', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
               Contact Me
             </h2>
-            <p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>
               Phone: <a href={`tel:${contactInfo.phone}`} style={{ color: '#d6ac66', textDecoration: 'none' }}>{contactInfo.phone}</a>
             </p>
-            <p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>
               Email: <a href={`mailto:${contactInfo.email}`} style={{ color: '#d6ac66', textDecoration: 'none' }}>{contactInfo.email}</a>
             </p>
-            <p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>
               My reviews: <a href={contactInfo.ter} style={{ color: '#d6ac66', textDecoration: 'none' }}>{contactInfo.terShort}</a>
             </p>
           </div>
         </section>
 
-        <footer
-          className={styles.footer}
-          style={{ textAlign: 'center', padding: '20px 0', backgroundColor: '#1e1e1e' }}
-        >
-          &copy; 2025 Karina Sparkle. All rights reserved.
+        <footer className={styles.footer} style={{ textAlign: 'center', padding: 'clamp(10px, 2vw, 20px) 0', backgroundColor: '#1e1e1e' }}>
+          <span style={{ fontSize: 'clamp(0.8rem, 1.5vw, 1rem)' }}>
+            © 2025 Karina Sparkle. All rights reserved.
+          </span>
         </footer>
-        
-{/* Ниже код для сердец летающих на фоне 
-        {!isFooterVisible && (
-          <div
-            style={{
-              position: 'fixed',
-              bottom: '20px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              animation: 'blink 1.5s infinite',
-              fontSize: '24px',
-              width: '75px',
-              textAlign: 'center',
-              color: '#d6ac66',
-              zIndex: 0,
-            }}
-          >
-            ↓
-          </div>
-        )}
-
-        {hearts.map((heart) => (
-          <div
-            key={heart.id}
-            style={{
-              position: 'fixed',
-              left: `${heart.left}%`,
-              top: `${heart.top}%`,
-              fontSize: `${heart.size}px`,
-              color: '#d6ac66',
-              opacity: heart.opacity,
-              animation: 'float 2s ease-in',
-            }}
-          >
-            ❤️
-          </div>
-        ))} */}
 
         <style jsx>{`
           @keyframes float {
@@ -343,24 +290,12 @@ export default function Home() {
           }
 
           @keyframes blink {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 1;
             }
             50% {
               opacity: 0.5;
-            }
-          }
-
-          @media (max-width: 768px) {
-            .${styles.imageContainer} {
-              position: relative;
-              width: 100%;
-              max-width: 100%;
-              height: 300px;
-            }
-            .${styles.image} {
-              width: 100%;
-              max-width: 100%;
             }
           }
         `}</style>
