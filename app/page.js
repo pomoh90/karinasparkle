@@ -237,7 +237,7 @@ export default function Home() {
             <h2 className={playfair.className} style={{ fontWeight: 300, color: '#d6ac66', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
               Donation
             </h2>
-            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Incall $700</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Incall $800</p>
             <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Outcall $800 + Taxi</p>
           </div>
 
