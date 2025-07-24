@@ -238,7 +238,7 @@ export default function Home() {
               Donation
             </h2>
             <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Incall $800</p>
-            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Outcall $800 + Taxi</p>
+            <p style={{ fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)' }}>Outcall $900 + Taxi</p>
           </div>
 
           <div data-aos="fade-up" style={{ textAlign: 'left' }}>
